@@ -5,9 +5,10 @@ from datetime import datetime
 def get_days_from_today(date):
     try:
         # Parse the input date string into a datetime object
-        date = datetime.strptime(date, "%Y-%m-%d")
+        date = datetime.strptime(date, "%Y-%m-%d").date()
+        today = datetime.today().date()
         # Calculate the difference between the given date and today
-        delta_date = date - date.today()
+        delta_date = date - today
         # Return the number of days from the difference
         return delta_date.days
     except ValueError:
@@ -15,19 +16,27 @@ def get_days_from_today(date):
         print("Invalid date format. Please use YYYY-MM-DD.")
 
 
-print(get_days_from_today("2026-10-01"))
+print(get_days_from_today("2026-06-04"))
 
 # Task 2: Generate a lottery-like ticket of unique random numbers
 import random
 
 # Function that generates a list of unique random numbers within a specified range
 def get_numbers_ticket1(min, max, quantity):
+    if (
+            min < 1
+            or max > 1000
+            or min > max
+            or quantity < 1
+            or quantity > (max - min + 1)
+    ):
+        return []
     # random.sample selects unique values without replacement
     numbers = random.sample(range(min, max), quantity)
     return numbers
 
 # Example usage: generate 6 unique numbers between 1 and 999 (1000 is exclusive)
-print(get_numbers_ticket1(1, 1000, 6))
+print(get_numbers_ticket1(-10, 10, 5))
 
 # Task 3: Normalize various raw phone number formats to a consistent international form
 import re
