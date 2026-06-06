@@ -22,7 +22,7 @@ print(get_days_from_today("2026-06-04"))
 import random
 
 # Function that generates a list of unique random numbers within a specified range
-def get_numbers_ticket1(min, max, quantity):
+def get_numbers_ticket(min, max, quantity):
     if (
             min < 1
             or max > 1000
@@ -32,11 +32,11 @@ def get_numbers_ticket1(min, max, quantity):
     ):
         return []
     # random.sample selects unique values without replacement
-    numbers = random.sample(range(min, max), quantity)
+    numbers = sorted(random.sample(range(min, max), quantity))
     return numbers
 
 # Example usage: generate 6 unique numbers between 1 and 999 (1000 is exclusive)
-print(get_numbers_ticket1(-10, 10, 5))
+print(get_numbers_ticket(1, 100, 6))
 
 # Task 3: Normalize various raw phone number formats to a consistent international form
 import re
